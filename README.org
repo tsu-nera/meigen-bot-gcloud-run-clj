@@ -1,22 +1,5 @@
-* 名言 Twitter Bot with Clojure and Firebase
+* 名言 Twitter Bot with Clojure on Google Cloud Run
 
-ref: https://github.com/tsu-nera/meigen-bot-clj 
+see also...
 
-** Firebase Functions
-
-ローカル実行はひとまずこれでいく, そのうちコマンド定義.
-
-ref:  https://github.com/GoogleCloudPlatform/functions-framework-java#running-the-functions-framework-directly
-
-#+begin_src bash
-$ clj -T:build uber
-$ java -jar opt/java-function-invoker-1.1.0 --classpath target/artifacts/application.jar:target/classes --target HelloWorld
-#+end_src
-
-Cloud FunctionsへのDeploy.
-
-#+begin_src bash
-$ gcloud functions deploy clojure-hello-world --runtime java11 --source target/artifacts --trigger-http --allow-unauthenticated --entry-point HelloWorld --memory 256M --region=asia-northeast1
-#+end_src
-
-
+https://github.com/tsu-nera/meigen-bot-firebase-clj
