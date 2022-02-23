@@ -1,4 +1,4 @@
-(ns main.clojure.server
+(ns server
   (:gen-class)
   (:require [ring.adapter.jetty :refer [run-jetty]]))
 

@@ -1,6 +1,9 @@
 (ns build
   (:require [clojure.tools.build.api :as b]
-            [tools-pom.tasks :as pom]))
+            [tools-pom.tasks :as pom])
+  (:import
+   [com.google.cloud.tools.jib.api Jib Containerizer RegistryImage TarImage])
+  )
 
 (def lib 'tsu-nera/meingen-bot-gcloud-run)
 (def version (format "0.1.%s" (b/git-count-revs nil)))
@@ -18,12 +21,12 @@
 
 ;; clj -T:build clean
 (defn clean [_]
-  "Delete the build target directory"
+  "delete the build target directory"
   (println (str "Cleaning... " target-dir))
   (b/delete {:path "target"}))
 
 (defn compile-java [_]
-  (println (str "Compiling... " src-java))
+  (println (str "compiling... " src-java))
   (b/javac {:src-dirs   src-java
             :class-dir  class-dir
             :basis      basis
@@ -56,13 +59,39 @@
            :basis     basis
            }))
 
+
+;; (defn jib [_]
+;;   (.containerize
+;;       (-> (Jib/from "gcr.io/distroless/java:11")
+;;           ;; (.addLayer [(Paths/get uber-path (into-array String[]))] (AbsoluteUnixPath/get "/"))
+;;           ;; (.setProgramArguments [(format "/%s" uber-file)])
+;;           (.addExposedPort (Port/tcp 3000))
+;;           )
+;; Jib.from("busybox")
+;; .addLayer(Arrays.asList(Paths.get("helloworld.sh")), AbsoluteUnixPath.get("/"))
+;; .setEntrypoint("sh", "/helloworld.sh")
+;; .containerize(
+;;           Containerizer.to(RegistryImage.named("gcr.io/my-project/hello-from-jib")
+;;                                             .addCredential("myusername", "mypassword")));
+;; )
+
+
+;; (defn pom [_]
+;;   (println "generating pom.xml...")
+;;   (b/write-pom {:class-dir class-dir
+;;                 :lib       lib
+;;                 :version   version
+;;                 :basis     basis
+;;                 :src-dirs  src-clj}))
+
 (defn- set-opts [opts]
   (assoc opts
          :lib          lib
          :version      version
          :write-pom    true
-         ;; :validate-pom true
-                                        ; Note: this EDN can come from anywhere - you could externalise it into a separate edn file (e.g. pom.edn), synthesise it from information elsewhere in your project, or whatever other scheme you like
+         :validate-pom true
+
+         ;; Note: this EDN can come from anywhere - you could externalise it into a separate edn file (e.g. pom.edn), synthesise it from information elsewhere in your project, or whatever other scheme you like
          ;; :pom
          ;; {:description      "Description of your project e.g. your project's GitHub \"short description\"."
          ;;  :url              "https://github.com/yourusername/yourproject"
@@ -72,7 +101,9 @@
          ;;                     :connection           "scm:git:git://github.com/yourusername/yourproject.git"
          ;;                     :developer-connection "scm:git:ssh://git@github.com/yourusername/yourproject.git"}
          ;;  :issue-management {:system "github" :url "https://github.com/yourusername/yourproject/issues"}}
-         ))
+         ;;
+         )
+  )
 
 (defn pom
   "Construct a comprehensive pom.xml file for this project"

@@ -27,19 +27,9 @@
       <version>0.3.3</version>
     </dependency>
     <dependency>
-      <groupId>ring</groupId>
-      <artifactId>ring-jetty-adapter</artifactId>
-      <version>1.8.1</version>
-    </dependency>
-    <dependency>
       <groupId>clj-http</groupId>
       <artifactId>clj-http</artifactId>
       <version>3.12.3</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.cloud.tools</groupId>
-      <artifactId>jib-maven-plugin</artifactId>
-      <version>3.2.0</version>
     </dependency>
     <dependency>
       <groupId>environ</groupId>
@@ -61,11 +51,6 @@
       <artifactId>google-auth-library-oauth2-http</artifactId>
       <version>1.4.0</version>
     </dependency>
-    <dependency>
-      <groupId>ring</groupId>
-      <artifactId>ring-core</artifactId>
-      <version>1.8.1</version>
-    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src/main/clojure</sourceDirectory>
@@ -82,27 +67,6 @@
             <mainClass>server</mainClass>
           </container>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.theoryinpractise</groupId>
-        <artifactId>clojure-maven-plugin</artifactId>
-        <version>1.8.3</version>
-        <extensions>true</extensions>
-        <configuration>
-          <sourceDirectories>
-            <sourceDirectory>src/main/clojure</sourceDirectory>
-          </sourceDirectories>
-        </configuration>
-        <executions>
-          <execution>
-            <id>clojure-compile</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>add-source</goal>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

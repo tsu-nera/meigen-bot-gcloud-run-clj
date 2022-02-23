@@ -15,8 +15,10 @@
   com.google.cloud/google-cloud-firestore         {:mvn/version "3.0.2"}
   com.google.firebase/firebase-admin              {:mvn/version "8.1.0"}
 
-  ;; for Google Cloud Run
+  ;; Google Cloud Run
   com.google.cloud.tools/jib-maven-plugin {:mvn/version "3.2.0"}
+  ring/ring-core                          {:mvn/version "1.8.1"}
+  ring/ring-jetty-adapter                 {:mvn/version "1.8.1"}
   }
 
  ;; for Google Cloud Functions
@@ -27,9 +29,10 @@
  ;; ring/ring-devel                                    {:mvn/version "1.8.2"}}
 
  :aliases
- {:run   {:main-opts ["-m" "meigen-bot.core"]}
-  :build {:deps       {io.github.clojure/tools.build {:git/tag "v0.7.7" :git/sha "1474ad6"}
-                       com.github.pmonks/tools-pom   {:mvn/version "1.0.74"}}
+ {:run   {:main-opts ["-m" "server"]}
+  :build {:deps       {io.github.clojure/tools.build   {:git/tag "v0.7.7" :git/sha "1474ad6"}
+                       com.github.pmonks/tools-pom     {:mvn/version "1.0.74"}
+                       com.google.cloud.tools/jib-core {:mvn/version "0.20.0"}}
           :ns-default build}
   }
  }
