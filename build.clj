@@ -61,7 +61,7 @@
 
 ;; 2. Containerize with Jib and upload the container to registry
 ;; (defn jib [_]
-;;   nil)
+;; nil)
 
 ;; (defn jib [_]
 ;;   (.containerize

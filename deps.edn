@@ -1,5 +1,5 @@
 {
- :paths ["src/main/clojure" "src/main/java"]
+ :paths ["src/main/clojure"]
 
  :deps
  {org.clojure/clojure {:mvn/version "1.10.3"}
@@ -9,24 +9,16 @@
   jarohen/chime       {:mvn/version "0.3.3"}
   com.taoensso/timbre {:mvn/version "5.1.2"}
 
-
   ;; Goole Cloud
   com.google.auth/google-auth-library-oauth2-http {:mvn/version "1.4.0"}
   com.google.cloud/google-cloud-firestore         {:mvn/version "3.0.2"}
   com.google.firebase/firebase-admin              {:mvn/version "8.1.0"}
 
   ;; Google Cloud Run
-  ;; com.google.cloud.tools/jib-maven-plugin {:mvn/version "3.2.0"}
   ring/ring-core          {:mvn/version "1.8.1"}
   ring/ring-jetty-adapter {:mvn/version "1.8.1"}
+  ring/ring-json          {:mvn/version "0.5.1"}
   }
-
- ;; for Google Cloud Functions
- ;; ref: https://github.com/pepijn/google-cloud-functions-clojure
- ;; com.google.cloud.functions/functions-framework-api {:mvn/version "1.0.4"}
- ;; nl.epij/google-cloud-functions-ring-adapter        {:mvn/version "0.1.0"}
- ;; ring/ring-json                                     {:mvn/version "0.5.1"}
- ;; ring/ring-devel                                    {:mvn/version "1.8.2"}}
 
  :aliases
  {:run   {:main-opts ["-m" "server"]}
